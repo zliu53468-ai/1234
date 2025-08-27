@@ -1,9 +1,11 @@
+# 更新後的 render.yaml
 services:
   - type: web
     name: baccarat-api
     env: python
     plan: free
     runtime: python
+    # 這裡的設定很重要，確保使用支援編譯的映像
     pythonVersion: "3.10"
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn app:app --workers 1 --threads 2 --timeout 60"
