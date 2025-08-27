@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: baccarat-api
+    env: python
+    plan: free
+    runtime: python
+    pythonVersion: "3.10"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app --workers 1 --threads 2 --timeout 60"
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: GUNICORN_CMD_ARGS
+        value: "--preload"
+    ignore: |
+      __pycache__
+      .git
+      .github
+      README.md
+    autoDeploy: true
+    branch: main
